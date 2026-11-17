@@ -164,6 +164,11 @@ function evaluateMathematicalExpression(rawExpr) {
         openCount--;
     }
 
+    // --- TAMBAHAN REGEX PENDARABAN IMPLISIT ANDA DI SINI ---
+    // Contoh: 2sin(30) -> 2*sin(30), 5(3) -> 5*(3), dan (4)5 -> (4)*5
+    expr = expr.replace(/(\d+)(asin|acos|atan|sin|cos|tan|log|ln|sqrt|cbrt|\()/g, '$1*$2');
+    expr = expr.replace(/\)(\d+)/g, ')*$1');
+
     // Semak kurungan kosong '()'
     if (/\(\)/.test(expr)) throw new Error('SYNTAX_ERROR');
 
