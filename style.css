@@ -1,0 +1,707 @@
+:root {
+            /* Pembolehubah Tema Cerah (Light Mode - Bingkai Putih Perak & Badan Carbon Gelap) */
+            --bg-page: #e2e8f0;
+            --bg-panel: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #cbd5e1;
+            --accent-blue: #1d4ed8;
+
+            /* Kerangka Luar & Tekstur Carbon ClassWiz fx-570EX */
+            --outer-frame: linear-gradient(145deg, #f8fafc, #cbd5e1);
+            --calc-body: #202328;
+            --carbon-pattern: 
+                linear-gradient(27deg, #181a1e 5px, transparent 5px) 0 5px,
+                linear-gradient(207deg, #181a1e 5px, transparent 5px) 10px 0px,
+                linear-gradient(27deg, #262930 5px, transparent 5px) 0px 10px,
+                linear-gradient(207deg, #262930 5px, transparent 5px) 10px 5px,
+                linear-gradient(90deg, #1d2025 10px, transparent 10px),
+                linear-gradient(#21242a 25%, #1a1c20 25%, #1a1c20 50%, transparent 50%, transparent 75%, #282c34 75%, #282c34);
+
+            /* Skrin LCD ClassWiz */
+            --lcd-bg: #d9e4d3;
+            --lcd-border: #82947c;
+            --lcd-text: #111812;
+            --lcd-subtext: #344437;
+
+            /* Butang Saintifik Hitam/Kelabu Gelap (Baris Atas) */
+            --btn-sci-bg: linear-gradient(180deg, #32363f 0%, #202329 100%);
+            --btn-sci-text: #ffffff;
+            --btn-sci-shadow: #0e1014;
+
+            /* Butang Pad Bawah Putih Perak (Nombor & Operasi) */
+            --btn-num-bg: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+            --btn-num-text: #0f172a;
+            --btn-num-shadow: #94a3b8;
+
+            /* Butang DEL & AC Biru ClassWiz (Boleh tukar ke Kuning apabila Shift/Khas) */
+            --btn-del-ac-bg: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
+            --btn-del-ac-text: #ffffff;
+            --btn-del-ac-shadow: #0f296b;
+
+            /* Warna Label Kecil di Atas Butang */
+            --lbl-shift: #eab308; /* Emas / Kuning */
+            --lbl-alpha: #ec4899; /* Merah Jambu / Merah */
+            --lbl-base: #38bdf8;  /* Biru Sian (DEC, HEX, BIN, OCT) */
+        }
+
+        [data-theme="dark"] {
+            --bg-page: #090d16;
+            --bg-panel: #111827;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --accent-blue: #3b82f6;
+
+            --outer-frame: linear-gradient(145deg, #334155, #0f172a);
+            --calc-body: #16181d;
+
+            /* Skrin LCD Backlit Dark Mode */
+            --lcd-bg: #1e2923;
+            --lcd-border: #334e3f;
+            --lcd-text: #ecfdf5;
+            --lcd-subtext: #6ee7b7;
+
+            --btn-num-bg: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
+            --btn-num-text: #090d16;
+            --btn-num-shadow: #475569;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Bar Navigasi Atas */
+        .app-header {
+            background-color: var(--bg-panel);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+
+        .brand-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .theme-toggle-btn {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+
+        /* Susun Atur Ruang Kerja */
+        .main-workspace {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 1.25rem;
+            max-width: 1380px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           BADAN REPLIKA SEBENAR CASIO CLASSWIZ FX-570EX
+           ========================================================================== */
+        .calculator-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        /* Bingkai Putih/Perak Melengkung di sekeliling Kalkulator */
+        .calculator-outer-shell {
+            background: var(--outer-frame);
+            padding: 10px 10px 16px 10px;
+            border-radius: 30px 30px 44px 44px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255,255,255,0.5) inset;
+        }
+
+        .calculator-casing {
+            width: 376px;
+            max-width: 100%;
+            background-color: var(--calc-body);
+            background-image: var(--carbon-pattern);
+            background-size: 20px 20px;
+            border-radius: 22px 22px 36px 36px;
+            padding: 16px 16px 22px;
+            box-shadow: 
+                inset 0 2px 6px rgba(0, 0, 0, 0.85),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        /* Pengepala CASIO & CLASSWIZ */
+        .calc-top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 0 4px;
+        }
+
+        .casio-logo {
+            color: #e2e8f0;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.14em;
+        }
+
+        .model-name {
+            color: #94a3b8;
+            font-size: 0.74rem;
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        .classwiz-title {
+            color: #cbd5e1;
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-align: right;
+        }
+
+        /* Skrin LCD Dua Baris */
+        .lcd-bezel {
+            background: linear-gradient(180deg, #0d0f12 0%, #1c2026 100%);
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .lcd-screen {
+            background-color: var(--lcd-bg);
+            border: 2px solid var(--lcd-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            height: 96px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.22);
+            font-family: 'JetBrains Mono', monospace;
+            overflow: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .lcd-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--lcd-subtext);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 2px;
+        }
+
+        .status-badges {
+            display: flex;
+            gap: 5px;
+        }
+
+        .badge-indicator {
+            padding: 0px 4px;
+            border-radius: 2px;
+            opacity: 0.22;
+            transition: opacity 0.15s ease;
+        }
+
+        .badge-indicator.active {
+            opacity: 1;
+            background-color: var(--lcd-text);
+            color: var(--lcd-bg);
+        }
+
+        /* Baris Atas Skrin: Input Ekspresi */
+        .lcd-expression {
+            font-size: 0.92rem;
+            color: var(--lcd-subtext);
+            min-height: 24px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .lcd-expression::-webkit-scrollbar { display: none; }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 0.95rem;
+            background-color: var(--lcd-text);
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Baris Bawah Skrin: Hasil Jawapan */
+        .lcd-result {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--lcd-text);
+            text-align: right;
+            min-height: 32px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .lcd-result.error-text {
+            font-size: 1.05rem;
+            color: #b91c1c;
+        }
+
+        [data-theme="dark"] .lcd-result.error-text {
+            color: #f87171;
+        }
+
+        /* ==========================================================================
+           ZON 1: 4 BUTANG BULAT PERAK METALIK & D-PAD BUJUR (SEBIJI GAMBAR)
+           ========================================================================== */
+        .top-metallic-zone {
+            display: grid;
+            grid-template-columns: 1fr 1fr 2.2fr 1fr 1fr;
+            align-items: start;
+            gap: 4px;
+            margin-bottom: 4px;
+            position: relative;
+        }
+
+        .round-key-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .top-tiny-label {
+            font-size: 0.56rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* Butang Bulat Conical Metalik Perak (SHIFT, ALPHA, MENU, ON) */
+        .btn-round-silver {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid #475569;
+            background: conic-gradient(
+                from 45deg,
+                #e2e8f0 0deg,
+                #94a3b8 60deg,
+                #f8fafc 120deg,
+                #64748b 180deg,
+                #f1f5f9 240deg,
+                #94a3b8 300deg,
+                #e2e8f0 360deg
+            );
+            box-shadow: 
+                0 3px 5px rgba(0, 0, 0, 0.75),
+                inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            transition: transform 0.08s ease, box-shadow 0.08s ease;
+        }
+
+        .btn-round-silver:active, .btn-round-silver.active-ring {
+            transform: translateY(2px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.9), 0 0 0 2px var(--lbl-shift);
+        }
+
+        /* D-Pad Bujur Berlian Perak di Tengah */
+        .dpad-center-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 6px;
+            z-index: 2;
+        }
+
+        .dpad-oval {
+            width: 106px;
+            height: 64px;
+            border-radius: 50px;
+            background: linear-gradient(145deg, #e2e8f0 0%, #64748b 55%, #cbd5e1 100%);
+            border: 2px solid #1e293b;
+            box-shadow: 
+                0 5px 10px rgba(0,0,0,0.75),
+                inset 0 2px 3px rgba(255,255,255,0.8);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Lekuk Hitam di Tengah D-Pad */
+        .dpad-inner-core {
+            width: 48px;
+            height: 28px;
+            border-radius: 20px;
+            background: radial-gradient(circle, #272b33 0%, #14171c 100%);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.9);
+            pointer-events: none;
+        }
+
+        .dpad-arrow {
+            position: absolute;
+            background: transparent;
+            border: none;
+            color: #1e293b;
+            font-size: 0.65rem;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: color 0.15s, transform 0.1s;
+        }
+
+        .dpad-arrow:hover { color: #000; }
+        .dpad-arrow:active { transform: scale(0.9); }
+        .dpad-up { top: 2px; left: 50%; transform: translateX(-50%); width: 36px; height: 18px; }
+        .dpad-down { bottom: 2px; left: 50%; transform: translateX(-50%); width: 36px; height: 18px; }
+        .dpad-left { left: 4px; top: 50%; transform: translateY(-50%); width: 24px; height: 32px; }
+        .dpad-right { right: 4px; top: 50%; transform: translateY(-50%); width: 24px; height: 32px; }
+
+        /* ==========================================================================
+           ZON 2: GRID FUNGSI SAINTIFIK 6 LAJUR (HITAM GELAP)
+           ========================================================================== */
+        .scientific-grid-6 {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px 6px;
+            margin-bottom: 12px;
+        }
+
+        .key-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sub-lbl-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            height: 12px;
+            font-size: 0.54rem;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-bottom: 2px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.85);
+        }
+
+        .c-shift { color: var(--lbl-shift); }
+        .c-alpha { color: var(--lbl-alpha); }
+        .c-base  { color: var(--lbl-base); }
+
+        .calc-btn {
+            width: 100%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.06s ease, filter 0.1s ease;
+        }
+
+        .calc-btn:hover { filter: brightness(1.1); }
+        .calc-btn:active { transform: translateY(2px); }
+
+        /* Butang Saintifik Hitam (6 Lajur) */
+        .btn-sci {
+            height: 29px;
+            border-radius: 6px 6px 8px 8px;
+            background: var(--btn-sci-bg);
+            color: var(--btn-sci-text);
+            font-size: 0.78rem;
+            box-shadow: 
+                0 3px 0 var(--btn-sci-shadow),
+                inset 0 1px 0 rgba(255,255,255,0.18);
+            border: 1px solid #14161a;
+        }
+
+        .btn-sci.math-italic {
+            font-family: 'Times New Roman', Georgia, serif;
+            font-style: italic;
+            font-size: 0.92rem;
+        }
+
+        /* ==========================================================================
+           ZON 3: GRID PAD BAWAH 5 LAJUR (PUTIH PERAK & DEL/AC BIRU)
+           ========================================================================== */
+        .bottom-pad-grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px 8px;
+        }
+
+        /* Butang Putih (Nombor 0-9, ., x10^x, Ans, +, -, x, ÷, =) */
+        .btn-white {
+            height: 38px;
+            border-radius: 7px 7px 10px 10px;
+            background: var(--btn-num-bg);
+            color: var(--btn-num-text);
+            font-size: 1.15rem;
+            font-weight: 800;
+            box-shadow: 
+                0 3px 0 var(--btn-num-shadow),
+                0 4px 5px rgba(0,0,0,0.45),
+                inset 0 1px 1px #ffffff;
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-white.small-txt {
+            font-size: 0.92rem;
+            font-weight: 800;
+        }
+
+        /* Butang DEL & AC (Biru ClassWiz Sebenar atau Kuning Khas) */
+        .btn-blue-ac {
+            height: 38px;
+            border-radius: 7px 7px 10px 10px;
+            background: var(--btn-del-ac-bg);
+            color: var(--btn-del-ac-text);
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            box-shadow: 
+                0 3px 0 var(--btn-del-ac-shadow),
+                0 4px 5px rgba(0,0,0,0.45),
+                inset 0 1px 1px rgba(255,255,255,0.35);
+            border: 1px solid #1e3a8a;
+        }
+
+        /* Apabila SHIFT ditekan, DEL/AC diserlahkan dengan aksen Kuning (INS / OFF) */
+        .btn-blue-ac.shift-yellow-mode {
+            background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
+            color: #0f172a;
+            box-shadow: 0 3px 0 #854d0e, 0 4px 5px rgba(0,0,0,0.45);
+            border-color: #a16207;
+        }
+
+        /* ==========================================================================
+           PANEL SISI: PENGUJI MATEMATIK & 3 FAIL KOD MODULAR
+           ========================================================================== */
+        .side-panel {
+            flex: 1;
+            min-width: 320px;
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.25rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 780px;
+            overflow: hidden;
+        }
+
+        .panel-tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.45rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+            border-color: var(--accent-blue);
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            flex: 1;
+            overflow-y: auto;
+            gap: 0.75rem;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        /* Senarai Sejarah & Ujian Pantas */
+        .quick-test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .test-chip {
+            background-color: var(--bg-page);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.55rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.1s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .test-chip:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+
+        .test-chip code {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .history-item {
+            background-color: var(--bg-page);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.6rem 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            transition: border-color 0.2s;
+        }
+
+        .history-item:hover {
+            border-color: var(--accent-blue);
+        }
+
+        /* Paparan Kod Modular */
+        .code-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-page);
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .copy-btn {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .code-pre {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            line-height: 1.5;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow: auto;
+            flex: 1;
+            max-height: 520px;
+            user-select: text;
+        }
+
+        @media (max-width: 900px) {
+            .main-workspace {
+                flex-direction: column;
+                align-items: center;
+            }
+            .side-panel {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
