@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Saintifik Casio ClassWiz fx-570EX</title>
+    <!-- Pautan Font Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Pautan ke Fail CSS Luaran -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+    <header class="app-header">
+        <div class="brand-title">
+            <span class="brand-badge">CASIO fx-570EX</span>
+            <h1 style="font-size: 1.05rem; font-weight: 700;">Kalkulator Saintifik ClassWiz</h1>
+        </div>
+        <button id="themeToggleBtn" class="theme-toggle-btn">
+            <span id="themeIcon">🌙</span>
+            <span id="themeText">Dark Mode</span>
+        </button>
+    </header>
+
+    <main class="main-workspace">
+        <section class="calculator-wrapper" aria-label="Kalkulator Saintifik Casio ClassWiz fx-570EX">
+            <div class="calculator-outer-shell">
+                <div class="calculator-casing">
+                    
+                    <!-- Pengepala Kalkulator -->
+                    <div class="calc-top-header">
+                        <div>
+                            <span class="casio-logo">CASIO</span>
+                            <span class="model-name" style="margin-left:6px;">fx-570EX</span>
+                        </div>
+                        <div class="classwiz-title">CLASSWIZ</div>
+                    </div>
+
+                    <!-- Skrin LCD Dua Baris -->
+                    <div class="lcd-bezel">
+                        <div class="lcd-screen">
+                            <div class="lcd-status-bar">
+                                <div class="status-badges">
+                                    <span id="indShift" class="badge-indicator">S</span>
+                                    <span id="indAlpha" class="badge-indicator">A</span>
+                                    <span id="indDeg" class="badge-indicator active">D</span>
+                                    <span class="badge-indicator active">Math</span>
+                                </div>
+                                <span>▲▼</span>
+                            </div>
+
+                            <!-- Baris Atas: Ekspresi Matematik / Input -->
+                            <div id="expressionDisplay" class="lcd-expression" aria-live="polite">
+                                <span id="expressionText"></span><span class="cursor-blink"></span>
+                            </div>
+
+                            <!-- Baris Bawah: Hasil Jawapan -->
+                            <div id="resultDisplay" class="lcd-result" aria-live="assertive">0</div>
+                        </div>
+                    </div>
+
+                    <!-- ZON 1: 4 Butang Bulat Perak (SHIFT, ALPHA, MENU, ON) & D-Pad Bujur Tengah -->
+                    <div class="top-metallic-zone">
+                        <div class="round-key-col">
+                            <span class="top-tiny-label c-shift">SHIFT</span>
+                            <button type="button" class="btn-round-silver" data-action="shift" id="shiftBtn" title="Fungsi Kedua (SHIFT)"></button>
+                        </div>
+                        <div class="round-key-col">
+                            <span class="top-tiny-label c-alpha">ALPHA</span>
+                            <button type="button" class="btn-round-silver" data-action="alpha" id="alphaBtn" title="Pemalar / Pembolehubah (ALPHA)"></button>
+                        </div>
+
+                        <!-- D-Pad Bujur Perak di Tengah -->
+                        <div class="dpad-center-wrap">
+                            <div class="dpad-oval">
+                                <div class="dpad-inner-core"></div>
+                                <button type="button" class="dpad-arrow dpad-up" data-action="dpad-up" title="Sejarah Sebelumnya">▲</button>
+                                <button type="button" class="dpad-arrow dpad-down" data-action="dpad-down" title="Sejarah Seterusnya">▼</button>
+                                <button type="button" class="dpad-arrow dpad-left" data-action="dpad-left" title="Kursor Kiri">◀</button>
+                                <button type="button" class="dpad-arrow dpad-right" data-action="dpad-right" title="Kursor Kanan">▶</button>
+                            </div>
+                        </div>
+
+                        <div class="round-key-col">
+                            <span class="top-tiny-label"><span style="color:#e2e8f0">MENU</span> <span class="c-shift">SETUP</span></span>
+                            <button type="button" class="btn-round-silver" data-action="menu" title="Menu / Setup"></button>
+                        </div>
+                        <div class="round-key-col">
+                            <span class="top-tiny-label" style="color:#e2e8f0">ON</span>
+                            <button type="button" class="btn-round-silver" data-action="clear" title="Hidupkan / Reset (ON)"></button>
+                        </div>
+                    </div>
+
+                    <!-- ZON 2: Grid Saintifik Hitam 6 Lajur (Mengikut Susunan Sebenar Gambar fx-570EX) -->
+                    <div class="scientific-grid-6">
+                        <!-- BARIS 1 SAINTIFIK: OPTN, CALC, [Ruang D-Pad], Integral, x -->
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">QR</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-value="π" title="Masukkan Pemalar π">OPTN</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">SOLVE</span><span class="c-alpha">=</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="calculate" title="Kira Ekspresi">CALC</button>
+                        </div>
+                        <!-- 2 Sel Kosong di bawah D-Pad seperti pada fizikal sebenar -->
+                        <div class="key-cell" style="pointer-events:none;"></div>
+                        <div class="key-cell" style="pointer-events:none;"></div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">d/dx</span><span class="c-alpha">:</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-value="e" title="Pemalar Euler (e)">∫dx</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">∑</span></div>
+                            <button type="button" class="calc-btn btn-sci math-italic" data-value="π" title="Pemalar π">x</button>
+                        </div>
+
+                        <!-- BARIS 2 SAINTIFIK: Pecahan, √, x², x^y, log, ln -->
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">a b/c</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-value="÷" title="Pecahan / Bahagi">■/□</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">³√■</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="sqrt" id="btnSqrt">√■</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">x³</span><span class="c-base">DEC</span></div>
+                            <button type="button" class="calc-btn btn-sci math-italic" data-action="square" id="btnSquare">x²</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">ⁿ√■</span><span class="c-base">HEX</span></div>
+                            <button type="button" class="calc-btn btn-sci math-italic" data-value="^">xⁿ</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">10ˣ</span><span class="c-base">BIN</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="log" id="btnLog">log■</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">eˣ</span><span class="c-base">OCT</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="ln" id="btnLn">ln</button>
+                        </div>
+
+                        <!-- BARIS 3 SAINTIFIK: (-), ° ' ", x⁻¹, sin, cos, tan -->
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">log</span><span class="c-alpha">A</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="negate">(−)</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">FACT</span><span class="c-alpha">B</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-value="π" title="Darjah / Pemalar π">° ' "</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">x!</span><span class="c-alpha">C</span></div>
+                            <button type="button" class="calc-btn btn-sci math-italic" data-action="inv" id="btnInv">x⁻¹</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">sin⁻¹</span><span class="c-alpha">D</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="sin" id="btnSin">sin</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">cos⁻¹</span><span class="c-alpha">E</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="cos" id="btnCos">cos</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">tan⁻¹</span><span class="c-alpha">F</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="tan" id="btnTan">tan</button>
+                        </div>
+
+                        <!-- BARIS 4 SAINTIFIK: STO, ENG, (, ), S⇔D, M+ -->
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">RECALL</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="sto">STO</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">∠</span><span class="c-base">i</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-value="e" title="Pemalar e / Kejuruteraan">ENG</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">Abs</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-value="(">(</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">,</span><span class="c-alpha">x</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-value=")">)</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">a b/c⇔d/c</span><span class="c-alpha">y</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="sd" title="Tukar Perpuluhan / Pecahan">S⇔D</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">M−</span><span class="c-alpha">M</span></div>
+                            <button type="button" class="calc-btn btn-sci" data-action="mplus">M+</button>
+                        </div>
+                    </div>
+
+                    <!-- ZON 3: Grid Pad Utama 5 Lajur (Butang Putih & DEL/AC Biru Sebiji Gambar) -->
+                    <div class="bottom-pad-grid-5">
+                        <!-- Baris 1 Pad Bawah: 7, 8, 9, DEL, AC -->
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">CONST</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value="7">7</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">CONV</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value="8">8</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">RESET</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value="9">9</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">INS</span><span class="c-alpha">UNDO</span></div>
+                            <button type="button" class="calc-btn btn-blue-ac" id="btnDel" data-action="delete">DEL</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">OFF</span></div>
+                            <button type="button" class="calc-btn btn-blue-ac" id="btnAc" data-action="clear">AC</button>
+                        </div>
+
+                        <!-- Baris 2 Pad Bawah: 4, 5, 6, ×, ÷ -->
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"></div>
+                            <button type="button" class="calc-btn btn-white" data-value="4">4</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"></div>
+                            <button type="button" class="calc-btn btn-white" data-value="5">5</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"></div>
+                            <button type="button" class="calc-btn btn-white" data-value="6">6</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">nPr</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value="×">×</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">nCr</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value="÷">÷</button>
+                        </div>
+
+                        <!-- Baris 3 Pad Bawah: 1, 2, 3, +, − -->
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"></div>
+                            <button type="button" class="calc-btn btn-white" data-value="1">1</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"></div>
+                            <button type="button" class="calc-btn btn-white" data-value="2">2</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"></div>
+                            <button type="button" class="calc-btn btn-white" data-value="3">3</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">Pol</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value="+">+</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">Rec</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value="-">−</button>
+                        </div>
+
+                        <!-- Baris 4 Pad Bawah: 0, ., ×10ˣ (π / e), Ans (%), = -->
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">Rnd</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value="0">0</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">Ran#</span><span class="c-alpha">RanInt</span></div>
+                            <button type="button" class="calc-btn btn-white" data-value=".">•</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">π</span><span class="c-alpha" style="margin-left:8px;">e</span></div>
+                            <button type="button" class="calc-btn btn-white small-txt" data-action="exp10" id="btnExp10">×10ˣ</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">%</span></div>
+                            <button type="button" class="calc-btn btn-white small-txt" data-action="ans" id="btnAns">Ans</button>
+                        </div>
+                        <div class="key-cell">
+                            <div class="sub-lbl-row"><span class="c-shift">≈</span></div>
+                            <button type="button" class="calc-btn btn-white" data-action="calculate">=</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pautan ke Fail JavaScript Luaran -->
+    <script src="script.js"></script>
+</body>
+</html>
